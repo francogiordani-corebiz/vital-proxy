@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path')
-const crypto = require('crypto')
 let basePath = path.join(__dirname, '../../../')
 const env = process.env.NODE_ENV
 if (env === 'production') {
@@ -14,7 +13,21 @@ const envConfig = require('dotenv').config({
 if (envConfig.error) {
   throw envConfig.error
 }
-const redisSecret = crypto.randomBytes(48).toString('hex')
+
+const keys = {
+  main: {
+    appKey: process.env.ARVITALQA_APPKEY,
+    appToken: process.env.ARVITALQA_APPTOKEN
+  },
+  arvitalqalh: {
+    appKey: process.env.ARVITALQALH_APPKEY,
+    appToken: process.env.ARVITALQALH_APPTOKEN
+  },
+  arvitalqatr: {
+    appKey: process.env.ARVITALQATR_APPKEY,
+    appToken: process.env.ARVITALQATR_APPTOKEN
+  }
+}
 
 /**
  * Test config
@@ -24,22 +37,7 @@ const test = {
   ip: process.env.IP,
   host: process.env.HOST,
   port: process.env.PORT,
-  url: `http://${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}`,
-  redisUrl: process.env.REDIS_URL,
-  redisSecret,
-  emailAddress: process.env.EMAIL_ADDRESS,
-  emailPassword: process.env.EMAIL_PASS,
-  mongoUrl: `mongodb://${process.env.DB_USER}:${encodeURIComponent(
-    process.env.DB_PASS
-  )}@${process.env.DB_HOST}`,
-  clientStaticFolder: path.join(basePath, 'client/build/static'),
-  clientBuildFolder: path.join(basePath, 'client/build'),
-  paypalClientId: process.env.PAYPAL_CLIENT_ID || '',
-  paypalClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
-  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
-  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  githubClientId: process.env.GITHUB_CLIENT_ID || '',
-  githubClientSecret: process.env.GITHUB_CLIENT_SECRET || ''
+  url: `http://${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}`
 }
 
 /**
@@ -51,21 +49,7 @@ const development = {
   host: process.env.HOST,
   port: process.env.PORT,
   url: `http://${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}`,
-  redisUrl: process.env.REDIS_URL,
-  redisSecret,
-  emailAddress: process.env.EMAIL_ADDRESS,
-  emailPassword: process.env.EMAIL_PASS,
-  mongoUrl: `mongodb+srv://${process.env.DB_USER}:${encodeURIComponent(
-    process.env.DB_PASS
-  )}@${process.env.DB_HOST}`,
-  clientStaticFolder: path.join(basePath, 'client/build/static'),
-  clientBuildFolder: path.join(basePath, 'client/build'),
-  paypalClientId: process.env.PAYPAL_CLIENT_ID || '',
-  paypalClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
-  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
-  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  githubClientId: process.env.GITHUB_CLIENT_ID || '',
-  githubClientSecret: process.env.GITHUB_CLIENT_SECRET || ''
+  keys
 }
 
 /**
@@ -77,21 +61,7 @@ const production = {
   host: process.env.HOST,
   port: process.env.PORT,
   url: `https://${process.env.HOST}:${process.env.PORT}`,
-  redisUrl: process.env.REDIS_URL,
-  redisSecret,
-  emailAddress: process.env.EMAIL_ADDRESS,
-  emailPassword: process.env.EMAIL_PASS,
-  mongoUrl: `mongodb+srv://${process.env.DB_USER}:${encodeURIComponent(
-    process.env.DB_PASS
-  )}@${process.env.DB_HOST}`,
-  clientStaticFolder: path.join(basePath, 'client/static'),
-  clientBuildFolder: path.join(basePath, 'client'),
-  paypalClientId: process.env.PAYPAL_CLIENT_ID || '',
-  paypalClientSecret: process.env.PAYPAL_CLIENT_SECRET || '',
-  googleClientId: process.env.GOOGLE_CLIENT_ID || '',
-  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  githubClientId: process.env.GITHUB_CLIENT_ID || '',
-  githubClientSecret: process.env.GITHUB_CLIENT_SECRET || ''
+  keys
 }
 
 const config = {

@@ -20,7 +20,7 @@ describe('Server', () => {
   })
   server.listen()
   it('should return 200', (done) => {
-    http.get(`http://${config.host}:${config.port}`, (res) => {
+    http.get(`http://${config.host}:${config.port}/api/ping`, (res) => {
       assert.strictEqual(200, res.statusCode)
       done()
     })

@@ -1,18 +1,8 @@
 'use strict'
 
-const {
-  config,
-  express,
-  session,
-  passport,
-  db,
-  show,
-  stats,
-  socket
-} = require('../config')
+const { config, express, show, stats } = require('../config')
 const http = require('http')
 const routes = require('../../routes')
-const mongoose = require('mongoose')
 
 let server = null
 
@@ -23,12 +13,8 @@ let server = null
  */
 const listen = () => {
   const app = express.init()
-  session.init(app)
-  passport.init(app)
-  db.init()
   server = http.createServer(app).listen(config.port, config.ip)
   show.debug(`Listening at http://${config.host}:${config.port}`)
-  socket.listen(server)
   routes.init(app)
   stats.memory()
 }
@@ -39,7 +25,6 @@ const listen = () => {
  */
 const close = () => {
   server.close()
-  mongoose.disconnect()
   show.debug('Server down')
 }
 

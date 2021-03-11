@@ -2,7 +2,7 @@
 
 const express = require('express')
 const error = require('../src/error')
-let router = express.Router()
+const router = express.Router()
 
 router.get('*', error.handle)
 

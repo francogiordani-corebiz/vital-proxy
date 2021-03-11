@@ -3,19 +3,15 @@ const nodeExternals = require('webpack-node-externals')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  target: "node",
+  target: 'node',
   entry: {
-    app: [
-      "./app.js"
-    ]
+    app: ['./app.js']
   },
   output: {
-    path: path.resolve(__dirname, "../build"),
-    filename: "app.js"
+    path: path.resolve(__dirname, '../build'),
+    filename: 'app.js'
   },
-  externals: [
-    nodeExternals()
-  ],
+  externals: [nodeExternals()],
   plugins: [
     new CopyPlugin([
       {
@@ -25,10 +21,6 @@ module.exports = {
       {
         from: './.env/production.config.env',
         to: '../build/.env/production.config.env'
-      },
-      {
-        from: './ssl',
-        to: '../build/ssl'
       },
       {
         from: '../client/build',
