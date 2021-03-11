@@ -1,21 +1,49 @@
 {
-  "name": "mern-boilerplate",
-  "version": "1.0.1",
+  "name": "mern-boilerplate-server",
+  "version": "1.0.0",
   "description": "README.md",
   "main": "app.js",
-  "author": "Franco Giordani",
+  "author": "Franco giordani",
   "contact": "francogiordanid@gmail.com",
   "license": "MIT",
   "scripts": {
-    "dev:client": "npm start --prefix client/",
-    "dev:server": "npm run dev --prefix server/",
-    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
-    "build": "npm run build --prefix client/ && npm run build --prefix server/",
-    "start": "pm2 start build/app.js -i max",
+    "lint": "./node_modules/.bin/eslint ./routes ./src ./app.js",
+    "test": "export NODE_ENV=test && mocha --exit --reporter spec \"src/*/*.test.js\"",
+    "dev": "export NODE_ENV=development && nodemon app.js -L --exec \"npm run test && npm run lint && node\"",
+    "build": "webpack --config webpack.config.js",
+    "start": "export NODE_ENV=production && pm2-runtime start app.js -i max",
     "stop": "pm2 stop all",
     "delete": "pm2 delete app"
   },
+  "devDependencies": {
+    "chai": "4.3.3",
+    "copy-webpack-plugin": "^8.0.0",
+    "eslint": "^7.21.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "8.3.1",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0"
+  },
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.15.2",
+    "express-rate-limit": "^5.2.6",
+    "helmet": "^4.4.1",
+    "path": "^0.12.7",
+    "request": "^2.81.0",
+    "validator": "^13.5.2",
+    "webpack-node-externals": "^2.5.2",
+    "winston": "3.3.3"
   }
 }

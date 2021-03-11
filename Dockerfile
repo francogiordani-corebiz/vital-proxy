@@ -1,8 +1,8 @@
-# Production
-FROM keymetrics/pm2:8-alpine
-WORKDIR /app
-COPY /build/package*.json /app/
+# Development
+FROM node:10-alpine
+WORKDIR /server
+COPY package*.json /server/
 RUN npm install
-COPY /build/ /app/
+COPY . /server/
 EXPOSE 80
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
