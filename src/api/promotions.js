@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 const {
   config: { keys }
 } = require('../config')
@@ -25,7 +26,30 @@ const promotionsBySeller = (req, res, next) => {
       }
     )
     .then(({ data }) => {
-      res.json(data)
+      const promosBySku = {}
+
+      data.items.forEach((promo) => {
+        const skus = promo.generalValues?.skus
+        if (skus) {
+          skus.split(',').forEach((sku) => {
+            // add promotion to array by sku, if the sku doesnt exist yet, add that as a property
+            const promoValue = {
+              sku,
+              ...promo,
+              generalValues: {
+                Cucarda: promo.generalValues.Cucarda,
+                CdPromo: promo.generalValues.CdPromo
+              }
+            }
+            if (promosBySku.hasOwnProperty(sku)) {
+              promosBySku[sku].push(promoValue)
+            } else {
+              promosBySku[sku] = [promoValue]
+            }
+          })
+        }
+      })
+      res.json(promosBySku)
     })
     .catch((err) => {
       console.log(err)
