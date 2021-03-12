@@ -11,7 +11,7 @@ const promotionsBySeller = (req, res, next) => {
     params: { seller }
   } = req
   if (allowedSellers.indexOf(seller) === -1) {
-    res.status = 400
+    res.status(400)
     res.end('Seller not found')
   }
 
@@ -53,10 +53,14 @@ const promotionsBySeller = (req, res, next) => {
     })
     .catch((err) => {
       console.log(err)
-      if (err) {
+      if (err.response) {
         res.status = err.response.status
         res.end(err.response.statusText)
+        return
       }
+
+      res.status(500)
+      res.end('Internal server error')
     })
 }
 const promotionsBySku = (req, res, next) => {
