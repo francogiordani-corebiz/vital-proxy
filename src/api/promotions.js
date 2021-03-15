@@ -45,7 +45,7 @@ const promotionsBySeller = (req, res, next) => {
                 CdPromo: promo.generalValues.CdPromo
               }
             }
-            if (promosBySku.hasOwnProperty(sku)) {
+            if (promosBySku.hasOwnProperty(sku) && promo.isActive) {
               promosBySku[sku].push(promoValue)
             } else {
               promosBySku[sku] = [promoValue]
