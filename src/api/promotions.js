@@ -34,7 +34,6 @@ const promotionsBySeller = (req, res, next) => {
           skus.split(',').forEach((sku) => {
             // add promotion to array by sku, if the sku doesnt exist yet, add that as a property
             const promoValue = {
-              // sku,
               idCalculatorConfiguration: promo.idCalculatorConfiguration,
               isActive: promo.isActive,
               description: promo.description,
@@ -45,7 +44,10 @@ const promotionsBySeller = (req, res, next) => {
                 CdPromo: promo.generalValues.CdPromo
               }
             }
-            if (promosBySku.hasOwnProperty(sku) && promo.isActive) {
+            if (!promosBySku.hasOwnProperty(sku) && promo.isActive) {
+              promosBySku[sku] = []
+            }
+            if (promo.isActive) {
               promosBySku[sku].push(promoValue)
             }
           })
