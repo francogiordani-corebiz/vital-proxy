@@ -9,6 +9,8 @@ const verifySeller = (req, res, next) => {
     res.status(400)
     res.end('Seller not found')
   }
+
+  next()
 }
 
 module.exports = verifySeller
