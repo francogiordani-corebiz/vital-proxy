@@ -12,6 +12,6 @@ router.get('/cache/performance', (req, res) => {
   res.json(cache.getPerformance())
 })
 router.get('/promociones/:seller', cache('30 minutes'), api.promotionsBySeller)
-router.get('/promociones/sku/:sku', api.promotionsBySku)
+router.get('/inventory/:seller/:sku', api.inventoryBySellerAndSku)
 
 module.exports = router

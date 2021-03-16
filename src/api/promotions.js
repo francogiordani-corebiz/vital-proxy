@@ -4,16 +4,10 @@ const {
 } = require('../config')
 const { default: axios } = require('axios')
 
-const allowedSellers = ['arvitalqalh', 'arvitalqatr']
-
 const promotionsBySeller = (req, res, next) => {
   const {
     params: { seller }
   } = req
-  if (allowedSellers.indexOf(seller) === -1) {
-    res.status(400)
-    res.end('Seller not found')
-  }
 
   axios
     .get(
