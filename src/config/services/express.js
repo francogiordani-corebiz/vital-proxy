@@ -17,7 +17,7 @@ const corsOptions = {
  */
 const init = () => {
   const app = express()
-  app.use(bodyParser.json())
+  app.use(bodyParser.json({ extended: true }))
   app.use(cors(corsOptions))
   app.use(helmet())
   return app

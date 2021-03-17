@@ -1,32 +1,38 @@
+/* eslint-disable no-prototype-builtins */
 const {
   show,
   config: { keys }
 } = require('../config')
 const axios = require('axios').default
 
+const isEmpty = (obj) => {
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) return false
+  }
+  return true
+}
+
 const handler = async (req, res) => {
-  const data = req.body || req.data || null
   const {
-    query,
+    body: data,
     params: { seller }
   } = req
 
   const internalUrlPartial = `/seller/${seller}`
   const vtexApiUrl = req.url.replace(internalUrlPartial, '')
 
+  console.log(seller, vtexApiUrl)
+
   const params = {
     method: req.method,
     url: `https://${seller}.vtexcommercestable.com.br` + vtexApiUrl,
     headers: {
-      Accept: 'application/vnd.vtex.ds.v10+json',
-      'Content-Type': 'application/json',
       'x-vtex-api-appKey': keys[seller].appKey,
       'X-VTEX-API-AppToken': keys[seller].appToken,
       'Access-Control-Expose-Headers': '*',
       'access-control-allow-headers': '*'
     },
-    query,
-    data
+    data: !isEmpty(data) ? data : null
   }
   axios(params)
     .then(function (response) {
