@@ -1,4 +1,4 @@
-const allowedSellers = ['arvitalqalh', 'arvitalqatr']
+const allowedSellers = ['arvitalqa', 'arvitalqalh', 'arvitalqatr']
 
 const verifySeller = (req, res, next) => {
   const {

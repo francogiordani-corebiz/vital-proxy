@@ -16,5 +16,6 @@ router.use(
   verifySeller,
   api.inventoryBySellerAndSku
 )
+router.all('/seller/:seller/api/*', verifySeller, api.handler)
 
 module.exports = router

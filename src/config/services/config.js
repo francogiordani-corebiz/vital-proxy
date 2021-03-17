@@ -19,6 +19,10 @@ const keys = {
     appKey: process.env.ARVITALQA_APPKEY,
     appToken: process.env.ARVITALQA_APPTOKEN
   },
+  arvitalqa: {
+    appKey: process.env.ARVITALQA_APPKEY,
+    appToken: process.env.ARVITALQA_APPTOKEN
+  },
   arvitalqalh: {
     appKey: process.env.ARVITALQALH_APPKEY,
     appToken: process.env.ARVITALQALH_APPTOKEN
