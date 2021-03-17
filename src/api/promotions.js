@@ -23,7 +23,7 @@ const promotionsBySeller = (req, res, next) => {
       const promosBySku = {}
 
       data.items.forEach((promo) => {
-        const skus = promo.generalValues?.skus
+        const skus = promo.generalValues?.Skus
         if (skus) {
           skus.split(',').forEach((sku) => {
             // add promotion to array by sku, if the sku doesnt exist yet, add that as a property
