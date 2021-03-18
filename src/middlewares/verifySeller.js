@@ -8,6 +8,7 @@ const verifySeller = (req, res, next) => {
   if (allowedSellers.indexOf(seller) === -1) {
     res.status(400)
     res.end('Seller not found')
+    return
   }
 
   next()

@@ -21,8 +21,6 @@ const handler = async (req, res) => {
   const internalUrlPartial = `/seller/${seller}`
   const vtexApiUrl = req.url.replace(internalUrlPartial, '')
 
-  console.log(seller, vtexApiUrl)
-
   const params = {
     method: req.method,
     url: `https://${seller}.vtexcommercestable.com.br` + vtexApiUrl,
