@@ -43,9 +43,9 @@ const getPolygonAroundAddress = (req, res) => {
           const geoCoordinates = `${longitude},${latitude}`
 
           const polygon = [
+            [longitude - DELTA, latitude + DELTA],
             [longitude + DELTA, latitude + DELTA],
             [longitude + DELTA, latitude - DELTA],
-            [longitude - DELTA, latitude + DELTA],
             [longitude - DELTA, latitude - DELTA]
           ]
 
