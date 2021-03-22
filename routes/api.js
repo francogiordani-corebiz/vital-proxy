@@ -13,6 +13,8 @@ const { verifySeller } = require('../src/middlewares')
 
 router.get('/ping', api.ping)
 
+router.get('/polygon/:addressId', api.getPolygonAroundAddress)
+
 router.get(
   '/seller/:seller/promotions',
   cache('30 minutes'),

@@ -3,6 +3,7 @@ const { inventoryBySellerAndSku } = require('./inventory')
 const { getOrder, getOrders } = require('./getOrder')
 const { handler } = require('./handler')
 const { ping } = require('./ping')
+const { getPolygonAroundAddress } = require('./addressPolygon')
 
 module.exports = {
   promotionsBySeller,
@@ -11,5 +12,6 @@ module.exports = {
   inventoryBySellerAndSku,
   getOrder,
   getOrders,
+  getPolygonAroundAddress,
   handler
 }
