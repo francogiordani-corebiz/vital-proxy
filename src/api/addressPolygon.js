@@ -1,14 +1,14 @@
 const { default: axios } = require('axios')
 const NodeGeocoder = require('node-geocoder')
 const {
-  config: { keys }
+  config: { keys, googleMapsKey }
 } = require('../config')
 
 const geocoder = NodeGeocoder({
-  apiKey: 'AIzaSyDB6yrsncQV3qkJMu8RfoPZNN3SNSvvh7M'
+  apiKey: googleMapsKey
 })
 
-const DELTA = 0.00085 / 2
+const DELTA = 0.000425
 
 const getPolygonAroundAddress = (req, res) => {
   const {

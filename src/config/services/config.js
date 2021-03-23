@@ -53,7 +53,8 @@ const development = {
   host: process.env.HOST,
   port: process.env.PORT,
   url: `http://${process.env.CLIENT_HOST}:${process.env.CLIENT_PORT}`,
-  keys
+  keys,
+  googleMapsKey: process.env.GOOGLE_MAPS_KEY
 }
 
 /**
@@ -65,7 +66,8 @@ const production = {
   host: process.env.HOST,
   port: process.env.PORT,
   url: `https://${process.env.HOST}:${process.env.PORT}`,
-  keys
+  keys,
+  googleMapsKey: process.env.GOOGLE_MAPS_KEY
 }
 
 const config = {
