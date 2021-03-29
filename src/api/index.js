@@ -1,4 +1,4 @@
-const { promotionsBySku, promotionsBySeller } = require('./promotions')
+const { updatePromotions, promotionsBySeller } = require('./promotions')
 const { inventoryBySellerAndSku } = require('./inventory')
 const { getOrder, getOrders } = require('./getOrder')
 const { handler } = require('./handler')
@@ -7,7 +7,7 @@ const { getPolygonAroundAddress } = require('./addressPolygon')
 
 module.exports = {
   promotionsBySeller,
-  promotionsBySku,
+  updatePromotions,
   ping,
   inventoryBySellerAndSku,
   getOrder,

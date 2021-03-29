@@ -61,8 +61,13 @@ const promotionsBySeller = (req, res, next) => {
       res.end('Internal server error')
     })
 }
-const promotionsBySku = (req, res, next) => {
+
+const updatePromotions = (req, res, next) => {
+  const { body } = req
+  console.log(JSON.stringify(body))
+
+  res.status = 200
   res.end('Not implemented')
 }
 
-module.exports = { promotionsBySku, promotionsBySeller }
+module.exports = { promotionsBySeller, updatePromotions }

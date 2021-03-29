@@ -17,10 +17,11 @@ router.get('/polygon/:addressId', api.getPolygonAroundAddress)
 
 router.get(
   '/seller/:seller/promotions',
-  cache('30 minutes'),
+  cache('24 hours'),
   verifySeller,
   api.promotionsBySeller
 )
+router.post('/cache/promotions/update', api.updatePromotions)
 router.use(
   '/seller/:seller/inventory/:sku',
   verifySeller,

@@ -15,7 +15,7 @@ if (envConfig.error) {
 }
 
 const keys = {
-  main: {
+  testing: {
     appKey: process.env.ARVITALQA_APPKEY,
     appToken: process.env.ARVITALQA_APPTOKEN
   },
