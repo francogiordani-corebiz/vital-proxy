@@ -7,8 +7,8 @@ const cors = require('cors')
 
 const whitelist = /.*vital.*\.([a-zA-Z]*)([vtex]*)([a-zA-Z]*)(\.*)com(\.*)([br]*)([ar]*)$/
 const corsOptions = {
-  credentials: true,
-  origin: whitelist
+  credentials: true
+  // origin: whitelist
 }
 
 /**
