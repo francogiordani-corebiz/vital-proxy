@@ -61,9 +61,7 @@ const promotionsBySeller = (req, res, next) => {
           return res.json(promosBySku)
         }
 
-        console.log('redis', result)
         const ofertas = JSON.parse(result)
-        console.log('json', ofertas)
         ofertas.forEach((oferta) => {
           const { skus } = oferta
           if (skus) {
@@ -86,7 +84,6 @@ const promotionsBySeller = (req, res, next) => {
                 }
                 if (promoValue.isActive) {
                   promosBySku[sku].push(promoValue)
-                  console.log('pushed 1 object')
                 }
               })
           }
