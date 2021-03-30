@@ -16,6 +16,8 @@ if (envConfig.error) {
 
 const keys = require('./keys')
 
+console.log(keys)
+
 /**
  * Test config
  */
