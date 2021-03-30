@@ -14,24 +14,7 @@ if (envConfig.error) {
   throw envConfig.error
 }
 
-const keys = {
-  testing: {
-    appKey: process.env.ARVITALQA_APPKEY,
-    appToken: process.env.ARVITALQA_APPTOKEN
-  },
-  arvitalqa: {
-    appKey: process.env.ARVITALQA_APPKEY,
-    appToken: process.env.ARVITALQA_APPTOKEN
-  },
-  arvitalqalh: {
-    appKey: process.env.ARVITALQALH_APPKEY,
-    appToken: process.env.ARVITALQALH_APPTOKEN
-  },
-  arvitalqatr: {
-    appKey: process.env.ARVITALQATR_APPKEY,
-    appToken: process.env.ARVITALQATR_APPTOKEN
-  }
-}
+const keys = require('./keys')
 
 /**
  * Test config

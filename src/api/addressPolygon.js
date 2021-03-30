@@ -21,8 +21,8 @@ const getPolygonAroundAddress = (req, res) => {
       `https://arvitalqa.myvtex.com/api/dataentities/AD/documents/${addressId}?_fields=number,street,city,postalCode`,
       {
         headers: {
-          'X-VTEX-API-AppKey': keys.testing.appKey,
-          'X-VTEX-API-AppToken': keys.testing.appToken
+          'X-VTEX-API-AppKey': keys.arvitalqa.appKey,
+          'X-VTEX-API-AppToken': keys.arvitalqa.appToken
         }
       }
     )

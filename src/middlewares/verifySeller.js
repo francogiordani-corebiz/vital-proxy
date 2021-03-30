@@ -1,4 +1,26 @@
-const allowedSellers = ['arvitalqa', 'arvitalqalh', 'arvitalqatr']
+const allowedSellers = [
+  /* testing sellers */
+  'arvitalqa',
+  'arvitalqalh',
+  'arvitalqatr',
+
+  /* production sellers */
+  'arvital',
+  'arvitalbu',
+  'arvitalmo',
+  'arvitallf',
+  'arvitalma',
+  'arvitallp',
+  'arvitaltet',
+  'arvitalav',
+  'arvitalpo',
+  'arvitalre',
+  'arvitalne',
+  'arvitalsf',
+  'arvitalmp',
+  'arvitalbb',
+  'arvitalsa'
+]
 
 const verifySeller = (req, res, next) => {
   const {

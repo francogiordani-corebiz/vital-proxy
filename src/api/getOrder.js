@@ -10,8 +10,8 @@ const getOrder = (req, res) => {
   axios
     .get(`https://arvitalqa.myvtex.com/api/oms/pvt/orders/${orderId}`, {
       headers: {
-        'X-VTEX-API-AppKey': keys.testing.appKey,
-        'X-VTEX-API-AppToken': keys.testing.appToken
+        'X-VTEX-API-AppKey': keys.arvitalqa.appKey,
+        'X-VTEX-API-AppToken': keys.arvitalqa.appToken
       }
     })
     .then(({ data }) => {
@@ -35,8 +35,8 @@ const getOrders = (req, res) => {
   axios
     .get('https://arvitalqa.myvtex.com/api/oms/pvt/orders', {
       headers: {
-        'X-VTEX-API-AppKey': keys.testing.appKey,
-        'X-VTEX-API-AppToken': keys.testing.appToken
+        'X-VTEX-API-AppKey': keys.arvitalqa.appKey,
+        'X-VTEX-API-AppToken': keys.arvitalqa.appToken
       },
       params: query
     })
