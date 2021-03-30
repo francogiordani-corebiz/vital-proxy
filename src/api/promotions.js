@@ -73,10 +73,9 @@ const promotionsBySeller = (req, res, next) => {
                 const promoValue = {
                   idCalculatorConfiguration: oferta.IdOferta,
                   isActive: oferta.isActive,
-                  description:
-                    oferta.Descripcion || oferta.generalValues?.CantidadMinima
-                      ? `A partir de ${oferta.CantidadMinima}`
-                      : '',
+                  description: oferta.generalValues.CantidadMinima
+                    ? `A partir de ${oferta.CantidadMinima}`
+                    : '',
                   type: 'nominal',
                   status: oferta.isActive ? 'active' : '',
                   generalValues: oferta.generalValues
