@@ -17,7 +17,7 @@ router.get('/polygon/:addressId', api.getPolygonAroundAddress)
 
 router.get(
   '/seller/:seller/promotions',
-  cache('24 hours'),
+  cache('15 minutes'),
   verifySeller,
   api.promotionsBySeller
 )
