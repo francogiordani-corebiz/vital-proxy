@@ -72,7 +72,11 @@ const promotionsBySeller = (req, res, next) => {
                   idCalculatorConfiguration: oferta.IdOferta,
                   isActive: oferta.isActive,
                   description: oferta.generalValues.CantidadMinima
-                    ? `A partir de ${oferta.generalValues.CantidadMinima} unidades`
+                    ? `A partir de ${
+                        oferta.generalValues.CantidadMinima
+                      } unidad${
+                        oferta.generalValues.CantidadMinima > 1 ? 'es' : ''
+                      }`
                     : '',
                   type: 'nominal',
                   status: oferta.isActive ? 'active' : '',
@@ -113,12 +117,14 @@ const updatePromotions = async (req, res, next) => {
 
   if (!file) {
     res.status = 400
+    console.error('Bad Request. File is empty')
     return res.end('Bad Request. File is empty')
   }
 
   const fileList = file.split(',')
   if (fileList.length > 1) {
     res.status = 400
+    console.error('Bad Request. Multiple files in field')
     return res.end('Bad Request. Multiple files in field')
   }
 
@@ -128,6 +134,8 @@ const updatePromotions = async (req, res, next) => {
 
   if (status !== 200) {
     res.status = 500
+    console.error(`Error retrieving file from Vtex MasterData.\n
+    URL: ${fileUrl}`)
     return res.end(`Error retrieving file from Vtex MasterData.\n
     URL: ${fileUrl}`)
   }
@@ -143,6 +151,7 @@ const updatePromotions = async (req, res, next) => {
     (err, output) => {
       if (err) {
         res.status = 500
+        console.error(`Error parsing CSV file.\t${err}`)
         return res.end(`Error parsing CSV file.\t${err}`)
       }
       const now = new Date()
@@ -166,7 +175,8 @@ const updatePromotions = async (req, res, next) => {
             PrecioLista: promo.PrecioLista,
             PrecioOferta: promo.PrecioOferta,
             CantidadMinima: promo.CantidadMinima,
-            Expiracion: promo.Expiracion
+            Expiracion: promo.Expiracion,
+            Canal: promo.Canal
           }
         }
         promos.push(promoValue)
@@ -175,6 +185,7 @@ const updatePromotions = async (req, res, next) => {
       redis.set(id, JSON.stringify(promos))
 
       res.status = 200
+      console.log('Promotions updated succesfully')
       return res.json(promos)
     }
   )
