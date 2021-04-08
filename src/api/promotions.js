@@ -146,7 +146,8 @@ const updatePromotions = async (req, res, next) => {
       columns: true,
       trim: true,
       cast: true,
-      castDate: true
+      castDate: true,
+      relax: true
     },
     (err, output) => {
       if (err) {
