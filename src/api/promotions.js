@@ -123,12 +123,12 @@ const updatePromotions = async (req, res, next) => {
 
   const fileList = file.split(',')
   if (fileList.length > 1) {
-    res.status = 400
-    console.error('Bad Request. Multiple files in field')
-    return res.end('Bad Request. Multiple files in field')
+    //res.status = 400
+    console.warn('Multiple files in field')
+    //return res.end('Bad Request. Multiple files in field')
   }
 
-  const fileUrl = `https://${accountName}.vtexcommercestable.com.br/api/dataentities/${dataEntityId}/documents/${id}/file/attachments/${file}`
+  const fileUrl = `https://${accountName}.vtexcommercestable.com.br/api/dataentities/${dataEntityId}/documents/${id}/file/attachments/${fileList[0]}`
 
   const { data: fileContent, status } = await axios.get(fileUrl)
 

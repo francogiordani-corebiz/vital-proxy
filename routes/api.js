@@ -9,11 +9,7 @@ const cache = apicache.middleware
 
 const { verifySeller } = require('../src/middlewares')
 
-// const sellerRouter = require('./sellerRouter')
-
 router.get('/ping', api.ping)
-
-router.get('/polygon/:addressId', api.getPolygonAroundAddress)
 
 router.get(
   '/seller/:seller/promotions',
